@@ -1,9 +1,18 @@
-# vue 
+## vue 
   * (1)、状态提升 将数据放在他们共同父级组件管理 跨级组件处理
-  * (2)、eventbus 将数据 ： 1、import Vue from 'vue' export const EventBus = new Vue() vue.$on('eventName', eventHandleFunction) 定义事件 vue.$emit('eventName', arguments) 在main.js Vue.prototype.$EventBus = new Vue() 定义eventbus
-  * (3)、ref链 $parent / $children
-  * (4)、$attrs/$listeners $attrs：包含了父作用域中不被 prop 所识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件。通常配合 inheritAttrs 选项一起使用。 基本很少用到 处理跨级组件
-  * (5)、provide/inject 父组件  provide: {name：'xx} 子组建件 inject: ['name' ] 注意这不是响应的 需要将属性变成可响应的 用 2.6 vue.observable(监听对象)  否则将this 当前实例传下去也是可以的
+  * (2)、eventbus 将数据 ： 
+    * import Vue from 'vue' export const EventBus = new Vue() 
+    * 在main.js Vue.prototype.$EventBus = new Vue() 定义eventbus
+    * 定义事件 vue.$on('eventName', eventHandleFunction)  
+    * 触发事件vue.$emit('eventName', arguments) 
+  * (3)、ref链  $parent / $children
+  * (4)、$attrs/$listeners 
+    * $attrs：包含了父作用域中不被 prop 所识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件。通常配合 inheritAttrs 选项一起使用。 基本很少用到 处理跨级组件
+    *$listeners用法跟$attrs 差不多基本不怎么用到
+  * (5)、provide/inject 
+    * 父组件provide: {name：'xx}  
+    * 子组建件 inject: ['name' ] 
+      * 注意这不是响应的 需要将属性变成可响应的 用 2.6 vue.observable(监听对象)  否则将this 当前实例传下去也是可以的
   * (6)、vuex 
     * 1.简要介绍Vuex原理Vuex实现了一个单向数据流，在全局拥有一个State存放数据，当组件要更改State中的数据时，必须通过Mutation进行，Mutation同时提供了订阅者模式供外部插件调用获取State数据的更新。而当所有异步操作(常见于调用后端接口异步获取更新数据)或批量的同步操作需要走Action，但Action也是无法直接修改State的，还是需要通过Mutation来修改State的数据。最后，根据State的变化，渲染到视图上。
     * 2.简要介绍各模块在流程中的功能：
